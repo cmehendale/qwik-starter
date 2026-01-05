@@ -26,6 +26,7 @@
     "@builder.io/qwik": "^1.18.0",
     "@builder.io/qwik-city": "^1.18.0",
     "@types/node": "20.19.0",
+    "daisyui": "^5.5.14",
     "globals": "16.4.0",
     "typescript": "5.4.5",
     "typescript-plugin-css-modules": "latest",
@@ -33,5 +34,9 @@
     "undici": "*",
     "vite": "7.2.6",
     "vite-tsconfig-paths": "^4.2.1"
+  },
+  "dependencies": {
+    "@tailwindcss/vite": "^4.1.18",
+    "tailwindcss": "^4.1.18"
   }
 }
