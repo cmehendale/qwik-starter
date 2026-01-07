@@ -1,0 +1,48 @@
+import { component$, type QRL, useSignal, useTask$ } from "@builder.io/qwik";
+import clsx from "clsx";
+import { InputError } from "./InputError";
+import { InputLabel } from "./InputLabel";
+
+type TextInputProps = {
+  ref: QRL<(element: HTMLInputElement) => void>;
+  type: "text" | "email" | "tel" | "password" | "url" | "number" | "date";
+  name: string;
+  value: string | number | undefined;
+  onInput$: (event: Event, element: HTMLInputElement) => void;
+  onChange$: (event: Event, element: HTMLInputElement) => void;
+  onBlur$: (event: Event, element: HTMLInputElement) => void;
+  placeholder?: string;
+  required?: boolean;
+  class?: string;
+  label?: string;
+  error?: string;
+  form?: string;
+};
+
+/**
+ * Text input field that users can type into. Various decorations can be
+ * displayed in or around the field to communicate the entry requirements.
+ */
+export const TextInput = component$(
+  ({ label, value, error, ...props }: TextInputProps) => {
+    const { name, required } = props;
+    const input = useSignal<string | number>();
+    useTask$(({ track }) => {
+      if (!Number.isNaN(track(() => value))) {
+        input.value = value;
+      }
+    });
+    return (
+      <div class="fieldset flex flex-col gap-2">
+        <InputLabel label={label} name={name} required={required} />
+        <input
+          {...props}
+          class={clsx("input", error ? "input-error" : "")}
+          id={name}
+          value={input.value}
+        />
+        <InputError error={error} name={name} />
+      </div>
+    );
+  }
+);
