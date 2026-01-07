@@ -24,7 +24,6 @@
     "db.new": "npm run db.generate && npm run db.migrate",
     "db.fresh": "npm run db.rm && npm run db.new",
     "fix": "ultracite fix",
-    "postinstall": "drizzle-kit generate",
     "preview": "qwik build preview && vite preview --open",
     "start": "vite --open --mode ssr",
     "qwik": "qwik"
