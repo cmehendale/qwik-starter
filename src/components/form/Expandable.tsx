@@ -26,19 +26,19 @@ export const Expandable = component$(
      * Updates the expandable element height.
      */
 
-    const resizeElementHeight = $(() => {
-      if (element.value) {
-        element.value.style.maxHeight = "0";
-        updateElementHeight();
-        element.value.style.maxHeight = "";
-      }
-    });
-
     const updateElementHeight = $(() => {
       if (element.value) {
         element.value.style.height = `${
           expanded ? element.value.scrollHeight : 0
         }px`;
+      }
+    });
+
+    const resizeElementHeight = $(() => {
+      if (element.value) {
+        element.value.style.maxHeight = "0";
+        updateElementHeight();
+        element.value.style.maxHeight = "";
       }
     });
 
